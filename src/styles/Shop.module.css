@@ -1,1 +1,15 @@
-.Shop {}
+.Shop {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 1rem;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    justify-items: center;
+    gap: 8px;
+}

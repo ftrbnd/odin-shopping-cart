@@ -1,4 +1,14 @@
-.Product {}
+.Product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.Product:hover {
+    cursor: pointer;
+    background-color: rgb(247, 247, 247);
+}
 
 img {
     height: 250px;

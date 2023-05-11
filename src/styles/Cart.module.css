@@ -1,1 +1,5 @@
-.Cart {}
+.Cart {
+    align-self: flex-end;
+
+    text-align: end;
+}

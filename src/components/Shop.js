@@ -15,7 +15,8 @@ const Shop = () => {
   return (
     <div className={styles.Shop}>
       <Cart items={cart} />
-      {
+      <div className={styles.products}>
+        {
         products.map((p) => {
           return <Product
             name={p.name}
@@ -26,6 +27,7 @@ const Shop = () => {
             onAddProduct={(product) => setCart([...cart, product])} />
         })
       }
+      </div>
     </div>
   )
 };
