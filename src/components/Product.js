@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Product.module.css';
 
-const Product = ({ name, image, price, cart, setCart}) => {
+const Product = ({ name, image, price, onAddProduct}) => {
   const [quantity, setQuantity] = useState(0);
 
   const handleQuantityChange = (e) => {
@@ -12,12 +12,12 @@ const Product = ({ name, image, price, cart, setCart}) => {
     e.preventDefault();
 
     if (quantity > 0) {
-      setCart([...cart, {
+      onAddProduct({
         name,
         image,
         price,
         quantity,
-      }]);
+      });
     }
 
     setQuantity(0);

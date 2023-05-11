@@ -9,12 +9,8 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    loadProducts();
-  }, []);
-
-  const loadProducts = () => {
     setProducts(storeProducts);
-  };
+  }, []);
   
   return (
     <div className={styles.Shop}>
@@ -27,7 +23,7 @@ const Shop = () => {
             image={p.image}
             key={p.id}
             cart={cart}
-            setCart={setCart} />
+            onAddProduct={(product) => setCart([...cart, product])} />
         })
       }
     </div>
