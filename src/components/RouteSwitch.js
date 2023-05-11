@@ -1,16 +1,18 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Nav from "./Nav";
 import App from "../App";
 import Shop from "./Shop";
-import Nav from "./Nav";
+import About from "./About";
 
 const RouteSwitch = () => {
   return (
-    <BrowserRouter>
+      <BrowserRouter>
+        <Nav />
         <Routes>
-            <Nav />
             <Route path="/" element={<App />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/about" element={<About />} />
         </Routes>
     </BrowserRouter>
   );

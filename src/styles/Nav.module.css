@@ -1,1 +1,28 @@
-.Nav {}
+.Nav {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: rgb(255, 221, 162);
+    color: rgb(64, 64, 64);
+}
+
+.links {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
