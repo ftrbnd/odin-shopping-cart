@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Shop.module.css';
+import styles from '../styles/Shop.module.css';
 
 const Shop = () => (
   <div className={styles.Shop}>
