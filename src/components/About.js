@@ -16,7 +16,7 @@ const About = () => (
     <div className={styles.newsletter}>
       <h2>Stay up to date.</h2>
       <p>Join our newsletter or follow us on Instagram for the latest information.</p>
-      <input type='email' placeholder='Email Address' />
+      <input type='email' placeholder='Email Address' className={styles.emailInput} />
     </div>
   </div>
 );
