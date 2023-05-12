@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
+    padding: 1rem;
 }
 
 .Product:hover {
@@ -10,7 +12,7 @@
     background-color: rgb(247, 247, 247);
 }
 
-img {
+.shopImg {
     height: 250px;
     width: 250px;
     object-fit: cover;

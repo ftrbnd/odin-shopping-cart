@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Nav";
-import App from "../App";
+import Home from "./Home";
 import Shop from "./Shop";
 import About from "./About";
 
@@ -10,7 +10,7 @@ const RouteSwitch = () => {
       <BrowserRouter>
         <Nav />
         <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<About />} />
         </Routes>

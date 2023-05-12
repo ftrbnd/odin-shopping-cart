@@ -26,7 +26,7 @@ const Product = ({ name, image, price, onAddProduct}) => {
   return (
     <div className={styles.Product}>
       <h4>{name}</h4>
-      <img src={image} alt={`${name}`} />
+      <img src={image} alt={`${name}`} className={styles.shopImg} />
       <p>{ `$${price}` }</p>
       <form onSubmit={updateCart}>
         <label>
