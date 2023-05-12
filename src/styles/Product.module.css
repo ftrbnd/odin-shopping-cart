@@ -1,19 +1,61 @@
 .Product {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr 1fr;
 
     padding: 1rem;
 }
 
-.Product:hover {
-    cursor: pointer;
-    background-color: rgb(247, 247, 247);
+.header {
+    grid-row: 1;
+    grid-column: 1 / -1;
 }
 
 .shopImg {
-    height: 250px;
-    width: 250px;
+    grid-row: 2;
+    grid-column: 1;
+
+    height: 500px;
+    width: 500px;
     object-fit: cover;
+}
+
+.price {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.form {
+    grid-row: 2;
+    grid-column: 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form label {
+    align-self: center;
+}
+
+.quantity {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.quantity input {
+    width: 25px;
+    text-align: center;
+}
+
+/* Works for Chrome, Safari, Edge, Opera */
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.submit {
+    align-self: center;
 }

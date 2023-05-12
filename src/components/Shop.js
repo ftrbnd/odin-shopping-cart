@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Shop.module.css';
 import Cart from "./Cart";
 import storeProducts from '../assets/products';
-import Product from './Product';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const [cart, setCart] = useState([]);
@@ -18,13 +18,13 @@ const Shop = () => {
       <div className={styles.products}>
         {
         products.map((p) => {
-          return <Product
-            name={p.name}
-            price={p.price}
-            image={p.image}
-            key={p.id}
-            cart={cart}
-            onAddProduct={(product) => setCart([...cart, product])} />
+          return <div key={p.id} className={styles.product}>
+            <Link to={`/shop/${p.id}`}>
+              <h4>{p.name}</h4>
+              <img src={p.image} alt={`${p.name}`} className={styles.shopImg} />
+              <p>{ `$${p.price}` }</p>
+            </Link>
+          </div>
         })
       }
       </div>

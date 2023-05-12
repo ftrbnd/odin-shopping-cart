@@ -13,3 +13,23 @@
     justify-items: center;
     gap: 8px;
 }
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 1rem;
+}
+
+.product:hover {
+    cursor: pointer;
+    background-color: rgb(247, 247, 247);
+}
+
+.shopImg {
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+}
