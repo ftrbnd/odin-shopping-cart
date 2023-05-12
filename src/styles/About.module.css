@@ -1,1 +1,15 @@
-.About {}
+.About {
+    padding: 2rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.info {
+    text-align: start;
+    width: 60vw;
+}
+
+.newsletter {
+    text-align: center;
+    align-self: center;
+}
