@@ -6,6 +6,11 @@
     padding: 1rem;
 }
 
+.cart {
+    align-self: flex-end;
+    text-align: end;
+}
+
 .products {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

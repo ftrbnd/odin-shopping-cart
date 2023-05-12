@@ -16,7 +16,18 @@ const Cart = ({ items }) => {
   return (
     <div className={styles.Cart}>
       <h4>Cart ({ size })</h4>
-      <p>Total: ${ total }</p>
+      <p>Total: ${total}</p>
+      <div className={styles.items}>
+        {
+          items.map((item) => {
+            return <div key={item.id} className={styles.item}>
+              <h3>{item.name}</h3>
+              <p>{item.quantity}</p>
+              <p>{`$${item.price * item.quantity}`}</p>
+            </div>
+          })
+        }
+      </div>
     </div>
   )
 };

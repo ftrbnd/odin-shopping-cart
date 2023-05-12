@@ -19,6 +19,7 @@ const Product = () => {
         setProduct(prod);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleQuantityChange = (e) => {
