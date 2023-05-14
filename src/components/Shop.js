@@ -18,7 +18,7 @@ const Shop = () => {
   return (
     <div className={styles.Shop}>
       {/* <Cart items={cart} /> */}
-      <div className={styles.Cart}>
+      <div className={styles.cart}>
         <h4>Cart ({ size })</h4>
         <p>Total: ${total}</p>
       </div>
