@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Product.module.css';
 import { useMatch } from 'react-router-dom';
 import storeProducts from '../assets/products';
+import { useCartUpdate } from '../context/CartContext';
 
 const Product = () => {
   const [quantity, setQuantity] = useState(0);
@@ -12,6 +13,8 @@ const Product = () => {
     id: -1
   });
   const productId = parseInt(useMatch('/shop/:productId').params.productId);
+
+  const updateCart = useCartUpdate();
 
   useEffect(() => {
     for (const prod of storeProducts) {
@@ -34,19 +37,20 @@ const Product = () => {
     setQuantity((prevQty) => prevQty + 1);
   };
 
-  const updateCart = (e) => {
+  const addToCart = (e) => {
     e.preventDefault();
 
-    // if (quantity > 0) {
-    //   onAddProduct({
-    //     name,
-    //     image,
-    //     price,
-    //     quantity,
-    //   });
-    // }
+    if (quantity > 0) {
+      updateCart({
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        id: product.id,
+        quantity,
+      })
+    }
 
-    // setQuantity(0);
+    setQuantity(0);
   }
 
   return (
@@ -54,12 +58,12 @@ const Product = () => {
       <h1 className={styles.header}>{product.name}</h1>
       <img src={product.image} alt={`${product.name}`} className={styles.shopImg} />
       <p className={styles.price}>{ `$${product.price}` }</p>
-      <form onSubmit={updateCart} className={styles.form}>
+      <form onSubmit={addToCart} className={styles.form}>
         <label htmlFor='qty'>Quantity:</label>
         <div className={styles.quantity}>
-          <button onClick={decreaseQty}>-</button>
+          <button type='button' onClick={decreaseQty}>-</button>
           <input id='qty' type='number' value={quantity} min={0} onChange={handleQuantityChange} />
-          <button onClick={increaseQty}>+</button>
+          <button type='button' onClick={increaseQty}>+</button>
         </div>
         <button type='submit' className={styles.submit}>Add to Cart</button>
       </form>
