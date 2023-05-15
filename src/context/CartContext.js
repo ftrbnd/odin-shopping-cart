@@ -14,8 +14,22 @@ export function useCartUpdate() {
 export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
 
-    function updateCart(item) {
-        setCart(prevCart => prevCart.concat(item));
+    function updateCart(newItem) {
+        const existingItem = cart.find(item => item.id === newItem.id);
+        if (!existingItem) return setCart(prevCart => prevCart.concat(newItem));
+
+        const oldCart = [...cart];
+        
+        oldCart.splice(oldCart.indexOf(existingItem), 1);
+        oldCart.push({
+            name: existingItem.name,
+            price: existingItem.price,
+            image: existingItem.image,
+            id: existingItem.id,
+            quantity: existingItem.quantity + newItem.quantity,
+        });
+
+        setCart(oldCart);
     }
 
     return (
