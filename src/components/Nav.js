@@ -6,6 +6,14 @@ import { useCart } from '../context/CartContext';
 const Nav = () => {
   const cart = useCart();
 
+  const cartLength = () => {
+    let length = 0;
+    for (const item of cart) {
+      length += item.quantity;
+    }
+    return length;
+  }
+
   return (
     <div className={styles.Nav}>
       <nav>
@@ -22,7 +30,7 @@ const Nav = () => {
         </ul>
         <Link to='/cart'>
           <div className={styles.cart}>
-            <h4>Cart ({ cart.length })</h4>
+            <h4>Cart ({ cartLength() })</h4>
           </div>
         </Link>
       </nav>
