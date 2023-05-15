@@ -13,8 +13,8 @@ nav {
 
 .links {
     width: 40%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     align-items: center;
     list-style: none;
 }
