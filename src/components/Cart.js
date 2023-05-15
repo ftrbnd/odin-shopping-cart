@@ -20,39 +20,50 @@ const Cart = () => {
 
   return (
     <div className={styles.Cart}>
-      <h2>Your Cart</h2>
-      <div className={styles.titles}>
-        <h3>Product</h3>
-        <h3>Price</h3>
-        <h3>Quantity</h3>
-        <h3>Total</h3>
-      </div>
-      <div className={styles.items}>
-        {
-          cart.map((item) => {
-            return <div key={`${item.id}-${item.quantity}`} className={styles.item}>
-              <Link to={`/shop/${item.id}`}>
-                <div className={styles.itemView}>
-                  <img src={item.image} alt={item.name} className={styles.itemImg} />
-                  <p>{item.name}</p>
+      {cart.length > 0 ? (
+        <>
+          <h2>Your Cart</h2>
+          <div className={styles.titles}>
+            <h3>Product</h3>
+            <h3>Price</h3>
+            <h3>Quantity</h3>
+            <h3>Total</h3>
+          </div>
+          <div className={styles.items}>
+            {
+              cart.map((item) => {
+                return <div key={`${item.id}-${item.quantity}`} className={styles.item}>
+                  <Link to={`/shop/${item.id}`}>
+                    <div className={styles.itemView}>
+                      <img src={item.image} alt={item.name} className={styles.itemImg} />
+                      <p>{item.name}</p>
+                    </div>
+                  </Link>
+                  <p>${item.price }</p>
+                  <p>{item.quantity}</p>
+                  <p>{`$${item.price * item.quantity}`}</p>
                 </div>
-              </Link>
-              <p>${item.price }</p>
-              <p>{item.quantity}</p>
-              <p>{`$${item.price * item.quantity}`}</p>
-            </div>
-          })
-        }
-      </div>
-      <div className={styles.subtotalRow}>
-        <h4 className={styles.subtotal}>Subtotal: ${total}</h4>
-      </div>
-      <div className={styles.buttons}>
-        <Link to='/shop' className={styles.continue}>
-          <button type='button'>Continue Shopping</button>
-        </Link>
-        <button type='button' className={styles.checkout}>Check Out</button>
-      </div>
+              })
+            }
+          </div>
+          <div className={styles.subtotalRow}>
+            <h4 className={styles.subtotal}>Subtotal: ${total}</h4>
+          </div>
+          <div className={styles.buttons}>
+            <Link to='/shop' className={styles.continue}>
+              <button type='button'>Continue Shopping</button>
+            </Link>
+            <button type='button' className={styles.checkout}>Check Out</button>
+          </div>
+        </>
+      ) : (
+        <>
+          <h2>Your cart is empty.</h2>
+          <Link to='/shop' className={styles.continue}>
+            <button type='button'>Continue Shopping</button>
+            </Link>
+        </>
+      )}
     </div>
   )
 };
