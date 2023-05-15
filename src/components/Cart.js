@@ -37,7 +37,7 @@ const Cart = () => {
                   <p>{item.name}</p>
                 </div>
               </Link>
-              <p>{item.price }</p>
+              <p>${item.price }</p>
               <p>{item.quantity}</p>
               <p>{`$${item.price * item.quantity}`}</p>
             </div>
@@ -46,6 +46,12 @@ const Cart = () => {
       </div>
       <div className={styles.subtotalRow}>
         <h4 className={styles.subtotal}>Subtotal: ${total}</h4>
+      </div>
+      <div className={styles.buttons}>
+        <Link to='/shop' className={styles.continue}>
+          <button type='button'>Continue Shopping</button>
+        </Link>
+        <button type='button' className={styles.checkout}>Check Out</button>
       </div>
     </div>
   )

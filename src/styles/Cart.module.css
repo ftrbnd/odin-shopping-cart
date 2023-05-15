@@ -9,7 +9,7 @@
     padding: 1rem;
 }
 
-.titles, .item, .subtotalRow {
+.titles, .item, .subtotalRow, .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
@@ -18,12 +18,22 @@
 .item {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+
+    margin-bottom: 1rem;
 }
 
 .itemView {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
+}
+
+.itemView img {
+    justify-self: end;
+}
+
+.itemView p {
+    justify-self: start;
 }
 
 .itemView:hover {
@@ -39,4 +49,20 @@
 
 .subtotal {
     grid-column: 4;
+}
+
+.buttons button {
+    justify-self: center;
+}
+
+.continue {
+    grid-column: 3;
+}
+
+.checkout {
+    grid-column: 4;
+}
+
+button {
+    padding: 8px;
 }
