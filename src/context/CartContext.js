@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 
 const CartContext = React.createContext();
 const CartUpdateContext = React.createContext();
+const CartRemoveContext = React.createContext();
 
 export function useCart() {
     return useContext(CartContext);
@@ -9,6 +10,10 @@ export function useCart() {
 
 export function useCartUpdate() {
     return useContext(CartUpdateContext);
+}
+
+export function useCartRemove() {
+    return useContext(CartRemoveContext);
 }
 
 export function CartProvider({ children }) {
@@ -32,10 +37,21 @@ export function CartProvider({ children }) {
         setCart(oldCart);
     }
 
+    function removeFromCart(removedItem) {
+        const foundItem = cart.find(item => item.id === removedItem.id);
+        const oldCart = [...cart];
+        
+        oldCart.splice(oldCart.indexOf(foundItem), 1);
+
+        setCart(oldCart);
+    }
+
     return (
         <CartContext.Provider value={cart}>
             <CartUpdateContext.Provider value={updateCart}>
-                { children }
+                <CartRemoveContext.Provider value={removeFromCart}>
+                   { children }
+                </CartRemoveContext.Provider>
             </CartUpdateContext.Provider>
         </CartContext.Provider>
     )

@@ -9,16 +9,17 @@
     padding: 1rem;
 }
 
-.titles, .item, .subtotalRow, .buttons {
+.titles, .item, .subtotalRow, .buttons, .item {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
 
-.item {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+.titles h3:last-child {
+    justify-self: start;
+}
 
+.item {
     margin-bottom: 1rem;
 }
 
@@ -65,4 +66,20 @@
 
 button {
     padding: 8px;
+}
+
+.total {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.total p {
+    justify-self: start;
+}
+
+.total button {
+    justify-self: start;
 }

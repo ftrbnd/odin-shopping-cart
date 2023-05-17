@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Cart.module.css';
-import { useCart } from '../context/CartContext';
+import { useCart, useCartRemove } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
@@ -8,7 +8,7 @@ const Cart = () => {
   const [size, setSize] = useState(0);
   
   const cart = useCart();
-  // const updateCart = useCartUpdate();
+  const removeFromCart = useCartRemove();
 
   useEffect(() => {
     for (const item of cart) {
@@ -17,6 +17,12 @@ const Cart = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
+
+  const removeItem = (e, item) => {
+    e.preventDefault();
+
+    removeFromCart(item);
+  };
 
   return (
     <div className={styles.Cart}>
@@ -41,7 +47,10 @@ const Cart = () => {
                   </Link>
                   <p>${item.price }</p>
                   <p>{item.quantity}</p>
-                  <p>{`$${item.price * item.quantity}`}</p>
+                  <div className={styles.total}>
+                    <p>{`$${item.price * item.quantity}`}</p>
+                    <button type='button' onClick={(e) => removeItem(e, item)}>Remove</button>
+                  </div>
                 </div>
               })
             }
