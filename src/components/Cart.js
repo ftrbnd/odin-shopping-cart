@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
-  const [size, setSize] = useState(0);
   
   const cart = useCart();
   const removeFromCart = useCartRemove();
@@ -13,7 +12,6 @@ const Cart = () => {
   useEffect(() => {
     for (const item of cart) {
       setTotal(total + (item.price * item.quantity));
-      setSize(size + parseInt(item.quantity));
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
