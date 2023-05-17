@@ -39,10 +39,10 @@ const Cart = () => {
           <div className={styles.items}>
             {
               cart.map((item) => {
-                return <div key={`${item.id}-${item.quantity}`} className={styles.item}>
+                return <div className={styles.item} key={`${item.id}-${item.quantity}`}>
                   <Link to={`/shop/${item.id}`}>
                     <div className={styles.itemView}>
-                      <img src={item.image} alt={item.name} className={styles.itemImg} />
+                      <img src={item.image} alt={`${item.name} keyboard`} className={styles.itemImg} />
                       <p>{item.name}</p>
                     </div>
                   </Link>
