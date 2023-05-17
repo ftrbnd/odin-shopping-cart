@@ -10,9 +10,12 @@ const Cart = () => {
   const removeFromCart = useCartRemove();
 
   useEffect(() => {
-    for (const item of cart) {
-      setTotal(total + (item.price * item.quantity));
-    }
+    let sub = 0;
+
+    for (const item of cart)
+      sub += (item.price * item.quantity);
+
+    setTotal(sub);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
