@@ -40,4 +40,8 @@ describe("Cart component", () => {
 
         expect(screen.getAllByAltText(/keyboard/).length).toBe(3);
     });
+
+    it("removes item from cart and updates price accordingly", () => {
+        
+    });
 });
