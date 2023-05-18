@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 
 export const CartContext = React.createContext();
-const CartUpdateContext = React.createContext();
-const CartRemoveContext = React.createContext();
+export const CartUpdateContext = React.createContext();
+export const CartRemoveContext = React.createContext();
 
 export function useCart() {
     return useContext(CartContext);

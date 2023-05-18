@@ -3,6 +3,7 @@ import { cartRender } from "./test-utils";
 import { screen } from "@testing-library/react";
 import Cart from "../components/Cart";
 import '@testing-library/jest-dom'
+import userEvent from "@testing-library/user-event";
 
 const mockCart = [
     {
@@ -41,7 +42,14 @@ describe("Cart component", () => {
         expect(screen.getAllByAltText(/keyboard/).length).toBe(3);
     });
 
-    it("removes item from cart and updates price accordingly", () => {
-        
+    it("removes item from cart and updates price accordingly", async () => {
+        const user = userEvent.setup();
+        cartRender(<Cart />, mockCart);
+
+        await user.click(screen.getAllByRole('button', {
+            name: "Remove"
+        })[0]);
+
+        expect(screen.getAllByAltText(/keyboard/).length).toBe(2);
     });
 });
