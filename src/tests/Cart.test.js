@@ -1,9 +1,8 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { cartRender } from "./test-utils";
+import { screen } from "@testing-library/react";
 import Cart from "../components/Cart";
 import '@testing-library/jest-dom'
-import { BrowserRouter } from "react-router-dom";
-import { CartProvider } from "../context/CartContext";
 
 const mockCart = [
     {
@@ -29,29 +28,16 @@ const mockCart = [
     }
 ];
 
-const customRender = async (ui, { providerProps, ...renderOptions }) => {
-    return render(
-        <CartProvider {...providerProps}>{ui}</CartProvider>,
-        renderOptions
-    );
-}
-
 describe("Cart component", () => {
     it("renders correctly with empty cart", () => {
-        const providerProps = {
-            value: []
-        };
-        customRender(<Cart />, { providerProps, wrapper: BrowserRouter });
+        cartRender(<Cart />, []);
         
         expect(screen.getByRole('heading').textContent).toMatch(/cart is empty/i);
     });
 
     it("renders correctly with populated cart", () => {
-        const providerProps = {
-            value: mockCart
-        };
-        customRender(<Cart />, { providerProps, wrapper: BrowserRouter });
+        cartRender(<Cart />, mockCart);
 
-        expect(screen.getAllByAltText(/keyboard/).length).toBe(mockCart.length);
+        expect(screen.getAllByAltText(/keyboard/).length).toBe(3);
     });
 });
