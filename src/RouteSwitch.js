@@ -1,17 +1,20 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Nav from "./Nav";
-import Home from "./Home";
-import Shop from "./Shop";
-import About from "./About";
-import Product from "./Product";
-import Cart from "./Cart";
-import { CartProvider } from "../context/CartContext";
+import Nav from "./components/Nav";
+import Home from "./components/Home";
+import Shop from "./components/Shop";
+import About from "./components/About";
+import Product from "./components/Product";
+import Cart from "./components/Cart";
+
+export const CartContext = createContext();
 
 const RouteSwitch = () => {
+  const [cart, setCart] = useState([]);
+
   return (
+    <CartContext.Provider value={[cart, setCart]}>
       <BrowserRouter>
-          <CartProvider>
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -20,8 +23,8 @@ const RouteSwitch = () => {
                 <Route path="/shop/:productId" element={<Product />} />
                 <Route path="/cart" element={<Cart />} />  
             </Routes>
-          </CartProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </CartContext.Provider>
   );
 };
 

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/Product.module.css';
 import { useMatch } from 'react-router-dom';
 import storeProducts from '../assets/products';
-import { useCartUpdate } from '../context/CartContext';
+import { CartContext } from '../RouteSwitch';
 
 const Product = () => {
   const [quantity, setQuantity] = useState(0);
@@ -14,7 +14,7 @@ const Product = () => {
   });
   const productId = parseInt(useMatch('/shop/:productId').params.productId);
 
-  const updateCart = useCartUpdate();
+  const [cart, setCart] = useContext(CartContext);
 
   useEffect(() => {
     for (const prod of storeProducts) {
@@ -30,24 +30,32 @@ const Product = () => {
   }
 
   const decreaseQty = () => {
-    setQuantity((prevQty) => prevQty - 1);
+    setQuantity(prevQty => prevQty - 1);
   };
 
   const increaseQty = () => {
-    setQuantity((prevQty) => prevQty + 1);
+    setQuantity(prevQty => prevQty + 1);
   };
 
   const addToCart = (e) => {
     e.preventDefault();
 
     if (quantity > 0) {
-      updateCart({
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        id: product.id,
-        quantity,
-      })
+      const existingItem = cart.find(item => item.id === product.id);
+      if (!existingItem) return setCart(prevCart => prevCart.concat({...product, quantity}));
+
+      const oldCart = [...cart];
+      
+      oldCart.splice(oldCart.indexOf(existingItem), 1);
+      oldCart.push({
+          name: existingItem.name,
+          price: existingItem.price,
+          image: existingItem.image,
+          id: existingItem.id,
+          quantity: existingItem.quantity + quantity,
+      });
+
+      setCart(oldCart);
     }
 
     setQuantity(0);

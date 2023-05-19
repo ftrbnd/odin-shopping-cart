@@ -1,11 +1,14 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { CartContext } from '../context/CartContext'
+import { CartContext } from '../RouteSwitch';
 import { BrowserRouter } from 'react-router-dom';
 
-const cartRender = (ui, cart) =>
-    render(<CartContext.Provider value={cart}>{ui}</CartContext.Provider>, {
+const customRender = (ui, cart, setCart) =>
+    render(<CartContext.Provider value={[cart, setCart]}>{ui}</CartContext.Provider>, {
         wrapper: BrowserRouter
     });
 
-export { cartRender }
+// re-export everything
+export * from '@testing-library/react';
+
+export { customRender };

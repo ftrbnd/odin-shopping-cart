@@ -1,5 +1,5 @@
 import React from "react";
-import { cartRender } from "./test-utils";
+import { customRender } from "./test-utils";
 import { screen } from "@testing-library/react";
 import Cart from "../components/Cart";
 import '@testing-library/jest-dom'
@@ -31,20 +31,20 @@ const mockCart = [
 
 describe("Cart component", () => {
     it("renders correctly with empty cart", () => {
-        cartRender(<Cart />, []);
+        customRender(<Cart />, []);
         
         expect(screen.getByRole('heading').textContent).toMatch(/cart is empty/i);
     });
 
     it("renders correctly with populated cart", () => {
-        cartRender(<Cart />, mockCart);
+        customRender(<Cart />, mockCart);
 
         expect(screen.getAllByAltText(/keyboard/).length).toBe(3);
     });
 
     it("removes item from cart and updates price accordingly", async () => {
         const user = userEvent.setup();
-        cartRender(<Cart />, mockCart);
+        customRender(<Cart />, mockCart); // setCart is not a function - mock it?
 
         await user.click(screen.getAllByRole('button', {
             name: "Remove"

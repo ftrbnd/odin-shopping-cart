@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from '../styles/Nav.module.css';
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { CartContext } from '../RouteSwitch';
 
 const Nav = () => {
-  const cart = useCart();
+  const [cart] = useContext(CartContext);
 
   const cartLength = () => {
     let length = 0;

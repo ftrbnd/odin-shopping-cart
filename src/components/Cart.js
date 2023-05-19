@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from '../styles/Cart.module.css';
-import { useCart, useCartRemove } from '../context/CartContext';
+import { CartContext } from '../RouteSwitch';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
   
-  const cart = useCart();
-  const removeFromCart = useCartRemove();
+  const [cart, setCart] = useContext(CartContext);
 
   useEffect(() => {
     let sub = 0;
@@ -19,10 +18,17 @@ const Cart = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
-  const removeItem = (e, item) => {
+  const removeItem = (e, removedItem) => {
     e.preventDefault();
 
-    removeFromCart(item);
+    setCart(prevCart => {
+      const foundItem = prevCart.find(item => item.id === removedItem.id);
+      const oldCart = [...prevCart];
+      
+      oldCart.splice(oldCart.indexOf(foundItem), 1);
+
+      return oldCart;
+    });
   };
 
   return (
@@ -50,7 +56,7 @@ const Cart = () => {
                   <p>{item.quantity}</p>
                   <div className={styles.total}>
                     <p>{`$${item.price * item.quantity}`}</p>
-                    <button type='button' onClick={(e) => removeItem(e, item)}>Remove</button>
+                    <button type='button' onClick={e => removeItem(e, item)}>Remove</button>
                   </div>
                 </div>
               })
