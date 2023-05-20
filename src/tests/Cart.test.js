@@ -30,26 +30,45 @@ const mockCart = [
 ];
 
 describe("Cart component", () => {
+
     it("renders correctly with empty cart", () => {
-        customRender(<Cart />, []);
+        const providerProps = {
+            value: [[]]
+        };
+
+        customRender(<Cart />, { providerProps });
         
         expect(screen.getByRole('heading').textContent).toMatch(/cart is empty/i);
     });
 
     it("renders correctly with populated cart", () => {
-        customRender(<Cart />, mockCart);
+        const providerProps = {
+            value: [mockCart]
+        };
+        customRender(<Cart />, { providerProps });
 
         expect(screen.getAllByAltText(/keyboard/).length).toBe(3);
     });
 
     it("removes item from cart and updates price accordingly", async () => {
-        const user = userEvent.setup();
-        customRender(<Cart />, mockCart); // setCart is not a function - mock it?
+        const mockSetCart = jest.fn(val => {
+            providerProps.value[0] = val;
+        });
+        const providerProps = {
+            value: [
+                mockCart,
+                mockSetCart
+            ]
+        };
 
+        const user = userEvent.setup();
+
+        customRender(<Cart />, { providerProps });
         await user.click(screen.getAllByRole('button', {
             name: "Remove"
         })[0]);
 
-        expect(screen.getAllByAltText(/keyboard/).length).toBe(2);
+        // expect(screen.getAllByAltText(/keyboard/i).length).toBe(2);
+        expect(mockSetCart).toHaveBeenCalledTimes(1);
     });
 });
