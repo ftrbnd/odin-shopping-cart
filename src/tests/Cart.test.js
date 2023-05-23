@@ -50,17 +50,10 @@ describe("Cart component", () => {
         expect(screen.getAllByAltText(/keyboard/).length).toBe(3);
     });
 
-    it("removes item from cart and updates price accordingly", async () => {
-        const mockSetCart = jest.fn(val => {
-            providerProps.value[0] = val;
-        });
+    it("removes item from cart and updates price accordingly", async () => {        
         const providerProps = {
-            value: [
-                mockCart,
-                mockSetCart
-            ]
+            value: [mockCart]
         };
-
         const user = userEvent.setup();
 
         customRender(<Cart />, { providerProps });
@@ -68,7 +61,6 @@ describe("Cart component", () => {
             name: "Remove"
         })[0]);
 
-        // expect(screen.getAllByAltText(/keyboard/i).length).toBe(2);
-        expect(mockSetCart).toHaveBeenCalledTimes(1);
+        expect(screen.getAllByAltText(/keyboard/i).length).toBe(2);
     });
 });

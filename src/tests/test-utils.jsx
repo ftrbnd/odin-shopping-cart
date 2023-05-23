@@ -4,7 +4,7 @@ import { CartContext } from '../RouteSwitch';
 import { BrowserRouter } from 'react-router-dom';
 
 const customRender = (ui, { providerProps }) => 
-    render(<CartContext.Provider { ...providerProps }>{ui}</CartContext.Provider>, {
+    render(<CartContext.Provider {...providerProps}>{ui}</CartContext.Provider>, {
         wrapper: BrowserRouter
     });
 
